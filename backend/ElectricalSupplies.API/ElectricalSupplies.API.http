@@ -1,0 +1,6 @@
+@ElectricalSupplies.API_HostAddress = http://localhost:5093
+
+GET {{ElectricalSupplies.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
