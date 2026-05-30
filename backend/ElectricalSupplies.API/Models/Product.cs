@@ -1,19 +1,23 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ElectricalSupplies.API.Models
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
-        public string ProductName { get; set; } = string.Empty;
+        [Required]
+        public string Name { get; set; } = string.Empty;
 
-        public string? Category { get; set; }
+        [Required]
+        public string Category { get; set; } = string.Empty;
 
-        public int Quantity { get; set; }
+        public decimal Price { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        public int StockQuantity { get; set; }
 
-        public string? SupplierName { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
 
-        public DateTime CreatedAt { get; set; }
+        public string Description { get; set; } = string.Empty;
     }
 }

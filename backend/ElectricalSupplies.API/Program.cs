@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        "Data Source=ElectricalSupplies.db"));
 
 builder.Services.AddCors(options =>
 {
@@ -36,6 +36,35 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 
 app.UseCors("AllowAngular");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    if (!db.Products.Any())
+    {
+        db.Products.AddRange(
+            new Product
+            {
+                Name = "Gaming Laptop",
+                Category = "Computers",
+                Price = 85000,
+                StockQuantity = 5,
+                Description = "High performance laptop"
+            },
+            new Product
+            {
+                Name = "Mechanical Keyboard",
+                Category = "Accessories",
+                Price = 4500,
+                StockQuantity = 15,
+                Description = "RGB mechanical keyboard"
+            }
+        );
+
+        db.SaveChanges();
+    }
+}
 
 app.UseAuthorization();
 
