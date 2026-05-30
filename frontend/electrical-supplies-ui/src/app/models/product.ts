@@ -1,9 +1,9 @@
 export interface Product {
-  productId: number;
-  productName: string;
-  category?: string;
-  quantity: number;
-  unitPrice: number;
-  supplierName?: string;
-  createdAt: Date;
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  stockQuantity: number;
+  description: string;
+  imageUrl: string;
 }
