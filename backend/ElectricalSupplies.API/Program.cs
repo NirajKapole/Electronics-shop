@@ -1,3 +1,4 @@
+using ElectricalSupplies.API.Models;
 using ElectricalSupplies.API.Data;
 using Microsoft.EntityFrameworkCore;
 

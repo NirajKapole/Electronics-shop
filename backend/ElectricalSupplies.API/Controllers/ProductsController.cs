@@ -16,83 +16,57 @@ namespace ElectricalSupplies.API.Controllers
             _context = context;
         }
 
-        // GET: api/products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<IActionResult> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            var products = await _context.Products.ToListAsync();
+            return Ok(products);
         }
 
-        // GET: api/products/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<IActionResult> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
 
             if (product == null)
-            {
                 return NotFound();
-            }
 
-            return product;
+            return Ok(product);
         }
 
-        // POST: api/products
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(Product product)
+        public async Task<IActionResult> AddProduct(Product product)
         {
-            product.CreatedAt = DateTime.UtcNow;
-
             _context.Products.Add(product);
-
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
                 nameof(GetProduct),
-                new { id = product.ProductId },
-                product);
+                new { id = product.Id },
+                product
+            );
         }
 
-        // PUT: api/products/1
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(
-            int id,
-            Product product)
+        public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
         {
-            if (id != product.ProductId)
-            {
+            if (id != updatedProduct.Id)
                 return BadRequest();
-            }
 
-            _context.Entry(product).State = EntityState.Modified;
+            _context.Entry(updatedProduct).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Products.Any(e => e.ProductId == id))
-                {
-                    return NotFound();
-                }
-
-                throw;
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        // DELETE: api/products/1
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
 
             if (product == null)
-            {
                 return NotFound();
-            }
 
             _context.Products.Remove(product);
 
