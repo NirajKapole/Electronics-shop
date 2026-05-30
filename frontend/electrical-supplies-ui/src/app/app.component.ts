@@ -1,29 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductService } from './services/product.service';
-import { Product } from './models/product';
+import { Component } from '@angular/core';
+import { ProductListComponent } from './features/products/pages/product-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [ProductListComponent],
+  template: `<app-product-list></app-product-list>`
 })
-export class AppComponent implements OnInit {
-
-  products: Product[] = [];
-
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-      }
-    });
-  }
-} 
+export class AppComponent {}
