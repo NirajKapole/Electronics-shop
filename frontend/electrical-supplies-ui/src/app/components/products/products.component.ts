@@ -8,7 +8,7 @@ import { Product } from '../../models/product';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
 
