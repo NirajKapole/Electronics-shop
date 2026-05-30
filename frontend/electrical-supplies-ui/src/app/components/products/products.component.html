@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Electrical Supplies Inventory</h2>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Supplier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productId }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.unitPrice }}</td>
+        <td>{{ product.supplierName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="products.length === 0">
+    No products found.
+  </p>
+</div>
