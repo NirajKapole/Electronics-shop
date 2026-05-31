@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -60,7 +60,7 @@ export class EditProductComponent implements OnInit {
 
     this.productService
       .getProduct(this.productId)
-      .subscribe(product => {
+      .subscribe((product: Product) => {
 
         this.productForm = this.fb.group({
           id: [product.id],
