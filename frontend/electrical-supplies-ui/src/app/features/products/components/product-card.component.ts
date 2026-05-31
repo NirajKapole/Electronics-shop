@@ -1,12 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../models/product';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
+    <a [routerLink]="['/products', product.id]"
+     class="card-link">
     <div class="product-card">
       <h2>{{ product.name }}</h2>
 

@@ -48,12 +48,14 @@ namespace ElectricalSupplies.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
+        public async Task<IActionResult> UpdateProduct(int id, Product product)
         {
-            if (id != updatedProduct.Id)
+            if (id != product.Id)
+            {
                 return BadRequest();
+            }
 
-            _context.Entry(updatedProduct).State = EntityState.Modified;
+            _context.Entry(product).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
 
@@ -66,7 +68,9 @@ namespace ElectricalSupplies.API.Controllers
             var product = await _context.Products.FindAsync(id);
 
             if (product == null)
+            {
                 return NotFound();
+            }
 
             _context.Products.Remove(product);
 
