@@ -71,11 +71,15 @@ export class ProductDetailsComponent implements OnInit {
     );
 
     this.productService
-      .getProduct(id)
+      .getProducts()
       .subscribe({
 
         next: (data) => {
-          this.product = data;
+          if (Array.isArray(data)) {
+            this.product = data.find((product) => product.id === id);
+          } else {
+            this.product = data;
+          }
         },
 
         error: (err) => {
