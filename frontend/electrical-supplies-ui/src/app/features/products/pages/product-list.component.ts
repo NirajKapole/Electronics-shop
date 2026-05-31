@@ -3,29 +3,28 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { ProductCardComponent } from '../components/product-card.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, RouterModule],
   template: `
     <h1>Electronics Shop</h1>
 
+    <a routerLink="/add-product">
+      <button>Add Product</button>
+    </a>
+
     <div class="product-grid">
+
       <app-product-card
         *ngFor="let product of products"
         [product]="product">
       </app-product-card>
+
     </div>
-  `,
-  styles: [`
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-  `]
+`
 })
 export class ProductListComponent implements OnInit {
 

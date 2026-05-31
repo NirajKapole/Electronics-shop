@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectricalSupplies.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260530151508_InitialCreate")]
+    [Migration("20260530202054_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
             modelBuilder.Entity("ElectricalSupplies.API.Models.Product", b =>
                 {
